@@ -102,7 +102,7 @@ Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to 
 
 #### Exercise 2.2 Introducing extinction thresholds
 
-By default, the functions in *NetworkExtinction* assume that, for a secondary extinction to happen, a node needs to loose all connections to its prey. However, one may also want to assume that species are only capable of sustaining existence given a threshold of remaining interaction strengths.
+By default, the functions in *NetworkExtinction* assume that, for a secondary extinction to happen, a node needs to lose all connections to its prey. However, one may also want to assume that species are only capable of sustaining existence given a threshold of remaining interaction strengths.
 
 #### Exercise 2.3 Introducing rewiring potential 
 
@@ -127,6 +127,6 @@ One example of an the oceanographic phenomenon that occurs on the coast of Chile
 
 Question 1: Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network?
 
-Question 2: Brainstorm other examples of oceanographic phenomena that may impact ecological variables. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
+Question 2: Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
 
 #### Reflection 4.2
