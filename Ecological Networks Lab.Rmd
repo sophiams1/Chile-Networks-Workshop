@@ -18,6 +18,20 @@ Oceans are facing a crisis worldwide, with fish stocks and marine ecosystems col
 
 This aim of this lab is to introduce a code base for analyzing the effects of perturbation from environmental or anthropogenic stressors, that may result in the extinction of marine organisms. Specific focus is placed on how these extinctions may propagate through a food web and impact static network metrics. We extend this analysis to dynamic network metrics in the lab's final reflection, where we also recommend additional resources.
 
+Notes:
+
+-   Mostly PhD students, one post-doc, and Lucas. Most are not familiar with networks.
+
+-   Introduction -- perhaps take 10 minutes to show a network, make a comparison of a network and the matrix. Make a powerpoint for this, look a iGraph in R (plot network, show matrix). With any of the concepts, use a part of a small network (visualize in that network). Use that image/concept to explain what the variables are.
+
+-   15 minutes of introductions/overview. 15 minutes of powerpoint. 45 minutes of part 1 (introductory material).
+
+-   Goal: developing tools for conservation. how can this be useful for conservation, strategy, etc? careful when making predictions. Use Friday afternoon to have a second lab session/open office hour.
+
+-   Independent work: reading papers, continuing with activities part 2.2 and 2.3, developing a small project centering tools for conservation.
+
+-   Sergio book chapter. Use ecological networks for ecosystem management. Isidora also a collaborator.
+
 ### Part 1 - Introduction to networks approach & basic concepts.
 
 ```{r Load packages and visualize data}
@@ -90,7 +104,7 @@ Reflection 1.3. How do you hypothesize that networks with power law vs exponenti
 
 ### Part 2. Examples & Interpretation
 
-#### Exercise 2.1 Simulating network extinctions
+#### Exercise 2.1 Simulating network extinctions (main focus of the session)
 
 Most-connected
 
@@ -100,11 +114,11 @@ Specific species... Primary producers, due to low nutrient subsidy. Mollusks, du
 
 Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species, random extinctions, or extinction of specific targeted species.
 
-#### Exercise 2.2 Introducing extinction thresholds
+#### Exercise 2.2 Introducing extinction thresholds (optional)
 
 By default, the functions in *NetworkExtinction* assume that, for a secondary extinction to happen, a node needs to lose all connections to its prey. However, one may also want to assume that species are only capable of sustaining existence given a threshold of remaining interaction strengths.
 
-#### Exercise 2.3 Introducing rewiring potential 
+#### Exercise 2.3 Introducing rewiring potential (optional)
 
 Ecological networks aren't static and we should assume that species may shift their connections in response to extinctions of an association/interaction partner. Rewiring processes can be simulated with *NetworkExtinction* using the `RewiringDist` argument.
 
@@ -119,7 +133,7 @@ Below, we call a matrix that contains information about similarities or rewiring
 
 ### Part 4. Synthesis & Reflection
 
-#### Reflection 4.1
+#### Reflection 4.1 - Connecting oceanography and ecology
 
 Reflect on the connection between labs 1 & 2 --- this means directly thinking about the effects of physical oceanographic variables like ocean currents, temperature, salinity, etc. on ecological variables like recruitment, life history, dispersal, species interactions, etc.
 
@@ -129,4 +143,10 @@ Question 1: Take a moment to hypothesize about the effects of upwelling on ecolo
 
 Question 2: Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
 
-#### Reflection 4.2
+#### Reflection 4.2 - Static vs dynamic networks
+
+Curtsdotter (2011) Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs
+
+#### Reflection 4.3 -- Network methods as a tool for conservation
+
+Sergio, Isidora book chapter.
