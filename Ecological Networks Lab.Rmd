@@ -18,23 +18,11 @@ Oceans are facing a crisis worldwide, with fish stocks and marine ecosystems col
 
 This aim of this lab is to introduce a code base for analyzing the effects of perturbation from environmental or anthropogenic stressors, that may result in the extinction of marine organisms. Specific focus is placed on how these extinctions may propagate through a food web and impact static network metrics. We extend this analysis to dynamic network metrics in the lab's final reflection, where we also recommend additional resources.
 
-Notes:
+### Section 1 - Introduction to networks approach & basic concepts
 
--   Mostly PhD students, one post-doc, and Lucas. Most are not familiar with networks.
+#### Loading packages and data
 
--   Introduction -- perhaps take 10 minutes to show a network, make a comparison of a network and the matrix. Make a powerpoint for this, look a iGraph in R (plot network, show matrix). With any of the concepts, use a part of a small network (visualize in that network). Use that image/concept to explain what the variables are.
-
--   15 minutes of introductions/overview. 15 minutes of powerpoint. 45 minutes of part 1 (introductory material).
-
--   Goal: developing tools for conservation. how can this be useful for conservation, strategy, etc? careful when making predictions. Use Friday afternoon to have a second lab session/open office hour.
-
--   Independent work: reading papers, continuing with activities part 2.2 and 2.3, developing a small project centering tools for conservation.
-
--   Sergio book chapter. Use ecological networks for ecosystem management. Isidora also a collaborator.
-
-### Part 1 - Introduction to networks approach & basic concepts.
-
-```{r Load packages and visualize data}
+```{r Load packages and data}
 
 #install the R package "NetworkExtinction"
 
@@ -42,6 +30,11 @@ Notes:
 library("NetworkExtinction")
 library("ggplot2")
 library("network")
+library("igraph")
+
+#define simple example network
+example_matrix <- read.csv("/Users/sophiasimon/Desktop/exnet.csv",header = FALSE)
+example_matrix <- as.matrix(exnet)
 
 #load chilean intertidal network
 data("chilean_intertidal")
@@ -50,11 +43,14 @@ data("chilean_intertidal")
 intertidal_matrix <- as.matrix(chilean_intertidal)
 intertidal_network <- as.network(chilean_intertidal)
 
+#Code to visualize networks
 ```
 
-Below are important definitions relevant to the NetworkExtinction R package workflows (NextR package preprint, Valdovinos 2019 Box 1). Read through these definitions and complete the exercises and reflections that follow each definition.
+#### Calculating and visualizing important network metrics
 
-**Interaction Type** - a link between two nodes reflecting the type of relationship involved. NetworkExtinction handles mutualistic (+/+) and trophic / parasitic (-/+) interaction types. For a more exhaustive overview of interaction types, consult Morales-Castilla et al. (2015).
+Below are important definitions relevant to the NetworkExtinction R package workflows (NextR package preprint, Valdovinos 2019 Box 1). Read through these definitions and complete the exercises and reflections that follow each definition. NOTE: For each exercise, begin by manipulating the simple example network called "`example_matrix`" before moving on to the empirical network called "`intertidal_matrix`".
+
+**Interaction Type** - a link between two nodes reflecting the type of relationship involved. The NetworkExtinction R package handles mutualistic (+/+) and trophic / parasitic (-/+) interaction types. For a more exhaustive overview of interaction types, consult Morales-Castilla et al. (2015).
 
 Reflection 1.1. Interaction type greatly impacts how links between nodes are interpreted biologically and subsequently impact the consequences of loss of connections in extinction cascades. Brainstorm how the loss of links/isolation of nodes relates to extinction in trophic versus mutualistic networks. How might outcomes differ between basal species/consumer nodes and facultative/obligate links?
 
@@ -63,62 +59,127 @@ Reflection 1.1. Interaction type greatly impacts how links between nodes are int
 ```{r Exercise 1.1}
 
 # Calculate the total number of species in the Chilean network
-S <- nrow(intertidal_matrix)
+S <- nrow(example_matrix)
+
+#Now calculate this metric for the empirical intertidal network
 ```
 
 **Degree** - The number of links that connects a single node to the rest of the networks. Total degree includes in-degrees (e.g. resource links) and out-degrees (e.g. consumer links).
 
 ```{r Exercise 1.2}
 
-#Calculate the in-degree, out-degree, and total degree for species 29 in the Chilean intertidal network. 
+#Calculate the in-degree, out-degree, and total degree for species 10 in the example network
 
-in_degree <- sum(intertidal_matrix[,29]) #columns, resources of that node
-out_degree <- sum(intertidal_matrix[29,]) #rows, consumers of that node
-total_degree <- in_degree + out_degree
+in_degree_10 <- sum(example_matrix[,10]) #columns, resources of that node
+out_degree_10 <- sum(example_matrix[10,]) #rows, consumers of that node
+total_degree_10 <- in_degree + out_degree
 
-#repeat for species 64
-in_degree <- sum(intertidal_matrix[,64]) #columns, resources of that node
-out_degree <- sum(intertidal_matrix[64,]) #rows, consumers of that node
-total_degree <- in_degree + out_degree
+#Now calculate the in-degree, out-degree, and total degree for species 29 and species 64 in the Chilean intertidal network. 
 ```
 
-Reflection 1.2. What can in_degree and out_degree tell you about the characteristic of a particular species, or, the positioning of a specific node in the food web?
+Reflection 1.2. Reflect on your calculations from Part 2 of Exercise 1.2 (above) to describe what the in_degree and out_degree metrics can tell you about the characteristic of a particular species, or, the positioning of a specific node in the food web? In other words, what did we learn about species 29 and 64?
 
 **Connectance (C)** -- Fraction of potential interactions that are realized, C=L/S^2^ where L is the total number of realized interactions (links connecting species) and is the S^2^ total number of possible links in the network (realized if every species interacts with every other species)
 
 ```{r Exercise 1.3}
 
-L <- sum(intertidal_matrix)
+L <- sum(example_matrix)
 C <- L/S^2
 
+#Now calculate this metric for the empirical intertidal network
 ```
 
 **Degree Distribution** -- The probability distribution that a node in the network is connected to k other nodes (Estrada, 2007). The `DegreeDistribution()` function calculates the cumulative distribution of the number of links that each species in the food network has (Estrada 2007). Then, the observed distribution is fitted to the exponential, and power law models.
 
 ```{r Calculating important metrics}
 
-DegreeDistribution(chilean_intertidal,scale="arithmetic")
+DegreeDistribution(example_matrix,scale="arithmetic")
+
+#Now calculate this metric for the empirical intertidal network
 ```
 
 Reflection 1.3. How do you hypothesize that networks with power law vs exponential degree distributions might respond differently to the removal/extinction of most-connected nodes?
 
 ### Part 2. Examples & Interpretation
 
-#### Exercise 2.1 Simulating network extinctions (main focus of the session)
+#### Simulating network extinctions
 
 Most-connected
 
+```{r}
+
+Mostconnected <- SimulateExtinctions(Network = chilean_intertidal, Method = "Mostconnected",
+NetworkType = "Trophic", # default argument
+IS = 0, # default argument
+Rewiring = FALSE # default argument
+)
+
+Mostconnected$sims
+ExtinctionPlot(Mostconnected$sims)
+```
+
 Random
 
-Specific species... Primary producers, due to low nutrient subsidy. Mollusks, due to ocean acidification
+```{r}
 
-Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species, random extinctions, or extinction of specific targeted species.
+Random_MC <- RandomExtinctions(Network = chilean_intertidal, nsim = 100,
+                               parallel = TRUE, ncores = 4,
+                               Record = FALSE, plot = TRUE)
 
-#### Exercise 2.2 Introducing extinction thresholds (optional)
+Random_OR <- RandomExtinctions(Network = chilean_intertidal, nsim = 100,
+                               SimNum = length(Order),
+                               parallel = TRUE, ncores = 4,
+                               Record = FALSE, plot = TRUE)
+
+Random$sims   
+ExtinctionPlot(Random$sims)
+```
+
+Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species or random extinctions.
+
+Ordered
+
+```{r}
+Order <- order(sna::degree(chilean_intertidal, cmode = "outdegree"),
+                  decreasing = TRUE)[1:60]
+
+Ordered <- SimulateExtinctions(Network = chilean_intertidal, Method = Ordered, Order = Order, NetworkType = "Trophic", # default argument
+IS = 0, # default argument
+Rewiring = FALSE # default argument
+)
+                
+Ordered$sims   
+ExtinctionPlot(Ordered$sims)
+```
+
+Exercise 2.2. Brainstorm biological mechanisms that would lead to specific sequences of ordered extinctions. Some examples are extinction of primary producers due to low nutrient subsidy or extinction of mollusks, due to ocean acidification. Implement those ordered extinction sequences into the code by redefining the `Order` variable
+
+#### Visualization and comparison
+
+```{r}
+
+ExtinctionPlot(Mostconnected$sims)
+
+ExtinctionPlot(History = Mostconnected$sims, Variable = "Link_density")
+
+CompareExtinctions(Nullmodel = Random_MC, Hypothesis = Mostconnected)
+
+CompareExtinctions(Nullmodel = Random_OR, Hypothesis = Ordered)
+```
+
+### Part 3. Independent work
+
+-   Goal: developing tools for conservation. how can this be useful for conservation, strategy, etc? careful when making predictions. Use Friday afternoon to have a second lab session/open office hour.
+
+-   Independent work: reading papers, continuing with activities part 2.2 and 2.3, developing a small project centering tools for conservation.
+
+-   Sergio book chapter. Use ecological networks for ecosystem management. Isidora also a collaborator on this work.
+
+#### (OPTIONAL) Introducing extinction thresholds 
 
 By default, the functions in *NetworkExtinction* assume that, for a secondary extinction to happen, a node needs to lose all connections to its prey. However, one may also want to assume that species are only capable of sustaining existence given a threshold of remaining interaction strengths.
 
-#### Exercise 2.3 Introducing rewiring potential (optional)
+#### (OPTIONAL) Introducing rewiring potential
 
 Ecological networks aren't static and we should assume that species may shift their connections in response to extinctions of an association/interaction partner. Rewiring processes can be simulated with *NetworkExtinction* using the `RewiringDist` argument.
 
@@ -129,24 +190,30 @@ Below, we call a matrix that contains information about similarities or rewiring
 ## use the functional group column from species characteristics spreadsheet to inform rewiring? 
 ```
 
-### Part 3. Independent work
-
 ### Part 4. Synthesis & Reflection
 
-#### Reflection 4.1 - Connecting oceanography and ecology
+#### Connecting oceanography and ecology
 
 Reflect on the connection between labs 1 & 2 --- this means directly thinking about the effects of physical oceanographic variables like ocean currents, temperature, salinity, etc. on ecological variables like recruitment, life history, dispersal, species interactions, etc.
 
 One example of an the oceanographic phenomenon that occurs on the coast of Chile and California is upwelling. Upwelling is the wind-driven movement of cold, nutrient-rich water from the ocean depth to its surface, replacing the warm and nutrient-depleted water near the surface. This upward flux of waters results in a persistent supply of nutrients that fuels photosynthesis and accounts for high levels of productivity.
 
-Question 1: Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network?
+Reflection 4.1. Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network?
 
-Question 2: Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
+Reflection 4.2. Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
 
-#### Reflection 4.2 - Static vs dynamic networks
+#### Static vs dynamic networks
+
+Reflection 4.3.
+
+Reflection 4.4
 
 Curtsdotter (2011) Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs
 
 #### Reflection 4.3 -- Network methods as a tool for conservation
+
+Reflection 4.5.
+
+Reflection 4.6.
 
 Sergio, Isidora book chapter.
