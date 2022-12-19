@@ -43,7 +43,7 @@ data("chilean_intertidal")
 intertidal_matrix <- as.matrix(chilean_intertidal)
 intertidal_network <- as.network(chilean_intertidal)
 
-#Code to visualize networks
+#Code to visualize networks (Daniel can try to do this)
 ```
 
 #### Calculating and visualizing important network metrics
@@ -62,6 +62,7 @@ Reflection 1.1. Interaction type greatly impacts how links between nodes are int
 S <- nrow(example_matrix)
 
 #Now calculate this metric for the empirical intertidal network
+
 ```
 
 **Degree** - The number of links that connects a single node to the rest of the networks. Total degree includes in-degrees (e.g. resource links) and out-degrees (e.g. consumer links).
@@ -79,6 +80,12 @@ total_degree_10 <- in_degree + out_degree
 
 Reflection 1.2. Reflect on your calculations from Part 2 of Exercise 1.2 (above) to describe what the in_degree and out_degree metrics can tell you about the characteristic of a particular species, or, the positioning of a specific node in the food web? In other words, what did we learn about species 29 and 64?
 
+**Secondary Extinction** --
+
+Reflection 1.x. Connecting network definition to. If it loses all in-degree, it would go extinct by secondary extinction. Not losing all links per say, specificaly about in-degree.
+
+Reflection 1.x. Species 1 has lots of in-degree, species 2 has very few in-degree. Which one is more vulnerable to extinction?
+
 **Connectance (C)** -- Fraction of potential interactions that are realized, C=L/S^2^ where L is the total number of realized interactions (links connecting species) and is the S^2^ total number of possible links in the network (realized if every species interacts with every other species)
 
 ```{r Exercise 1.3}
@@ -87,6 +94,7 @@ L <- sum(example_matrix)
 C <- L/S^2
 
 #Now calculate this metric for the empirical intertidal network
+
 ```
 
 **Degree Distribution** -- The probability distribution that a node in the network is connected to k other nodes (Estrada, 2007). The `DegreeDistribution()` function calculates the cumulative distribution of the number of links that each species in the food network has (Estrada 2007). Then, the observed distribution is fitted to the exponential, and power law models.
@@ -96,9 +104,12 @@ C <- L/S^2
 DegreeDistribution(example_matrix,scale="arithmetic")
 
 #Now calculate this metric for the empirical intertidal network
+
 ```
 
-Reflection 1.3. How do you hypothesize that networks with power law vs exponential degree distributions might respond differently to the removal/extinction of most-connected nodes?
+Reflection 1.3. Small world networks. Random (every species has approx. the same number of links) vs highly skewed distributions. Easier to imagine. Insert figure visualizing both random and highly skewed distributions. Degree distribution is a hard concept overall, make sure it's very clear. Frame it as "the probability of interacting" with other species, which will help with thinking about extinction/removal of those links.
+
+(hard reflection) How do you hypothesize that networks with power law vs exponential degree distributions might respond differently to the removal/extinction of most-connected nodes?
 
 ### Part 2. Examples & Interpretation
 
@@ -116,24 +127,23 @@ Rewiring = FALSE # default argument
 
 Mostconnected$sims
 ExtinctionPlot(Mostconnected$sims)
+
+#Show a subset of the columns. Something like just S, L, C, secExt columns. If you want to explore other columns, you can do it in your own time. We might not have time to understand prection release, modularity, etc. 
+
+#students will be moving at different paces. providing resources for people to move forward at their own pace while keeping everything as simple as possible in the main materials. 
 ```
 
-Random
+Reflection 2.x. Looking at the figure, we're moving most to least connected species. Even with that, the network is very robust. Good reflection b/c you can integrate ecological concepts. In the intertidal, it's because there's a lot of omnivory with highly generalist and redundant interactions. This is one reason why this network is so robust. In the Scientific Reports paper, there is a section where they discuss why the network is so robust.
 
-```{r}
+(Kayla) Prompt students to think about what would make a network robust. Pose hypotheses, run the code, think through what they find. (Daniel) Also useful to have more visual aid if they want to make some conclusions regarding robustness. They should also look at the network and trophic level. If robustness is related to the amount of herbivores there are, you should look at the herbivores. Maybe make a summary of the matrix that allows to show amount of herbivores, omnivores, etc. Can use Isidora's characteristics sheet for this. Add a line of code in which we show how to plot in ggplot (plot different columns, beyond secondary extinctions using ggplot).
 
-Random_MC <- RandomExtinctions(Network = chilean_intertidal, nsim = 100,
-                               parallel = TRUE, ncores = 4,
-                               Record = FALSE, plot = TRUE)
+(Kayla) relative generalism of species will me helpful in drawing the conclusions that Isidora came to for Reflection 2.x. relate to degree. could be as simple as saying omnivore is any species that has a non-integer trophic level. plotting trophic level vs degree.
 
-Random_OR <- RandomExtinctions(Network = chilean_intertidal, nsim = 100,
-                               SimNum = length(Order),
-                               parallel = TRUE, ncores = 4,
-                               Record = FALSE, plot = TRUE)
+Guiding questions/instructions for them to explore some metric. Ordered extinctions could be for hypothesis testing.
 
-Random$sims   
-ExtinctionPlot(Random$sims)
-```
+Hypothesis: robustness comes from omnivores so remove omnivores and see what happens?
+
+All specialists depend on plankton. Very sensitive to removal of plankton. These could be two hypotheses/exercises.
 
 Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species or random extinctions.
 
@@ -153,6 +163,25 @@ ExtinctionPlot(Ordered$sims)
 ```
 
 Exercise 2.2. Brainstorm biological mechanisms that would lead to specific sequences of ordered extinctions. Some examples are extinction of primary producers due to low nutrient subsidy or extinction of mollusks, due to ocean acidification. Implement those ordered extinction sequences into the code by redefining the `Order` variable
+
+Random
+
+```{r}
+
+Random_MC <- RandomExtinctions(Network = chilean_intertidal, nsim = 10,
+                               parallel = TRUE, ncores = 4,
+                               Record = FALSE, plot = TRUE)
+
+Random_OR <- RandomExtinctions(Network = chilean_intertidal, nsim = 10,
+                               SimNum = length(Order),
+                               parallel = TRUE, ncores = 4,
+                               Record = FALSE, plot = TRUE)
+
+Random$sims   
+ExtinctionPlot(Random$sims)
+```
+
+Important to highlight: the number of simulations could be very low. running code in parallel, depends on each person's computer. Can reduce the number of simulations from 100 to run without parallel.
 
 #### Visualization and comparison
 
@@ -198,7 +227,7 @@ Reflect on the connection between labs 1 & 2 --- this means directly thinking ab
 
 One example of an the oceanographic phenomenon that occurs on the coast of Chile and California is upwelling. Upwelling is the wind-driven movement of cold, nutrient-rich water from the ocean depth to its surface, replacing the warm and nutrient-depleted water near the surface. This upward flux of waters results in a persistent supply of nutrients that fuels photosynthesis and accounts for high levels of productivity.
 
-Reflection 4.1. Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network?
+Reflection 4.1. Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network? (could be very well connected with the exercise, if you remove the plankton node there is a lot of extinction when you remove plankton and in the paper you see plankton perturbation associated with climate change and changes in the level of nutrients due to changes in upwelling. Very good connection! Careful talking about near-shore vs off-shore plankton dynamics, because they are different. )
 
 Reflection 4.2. Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
 
