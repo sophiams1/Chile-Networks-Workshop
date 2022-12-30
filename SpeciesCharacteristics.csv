@@ -1,0 +1,108 @@
+﻿Matrix code,Species names,Phyllum,Subphyllum,Traits,TL,Functional group,Harvested species,Motility,BodyMass,Cluster
+1,acanthina monodon,Mollusca,Gastropoda,Predator,Predator,Gastropoda,1,M,8,4
+2,acanthocyclus gayi,Arthropoda,Crustacae,Predator,Predator,Acanthocyclus,,M,6.01,1
+3,acanthocyclus hassleri,Arthropoda,Crustacae,Predator,Predator,Acantochyclus,,M,6.65,1
+4,acanthopleura echinata,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,1,M,5.1,7
+5,chaetopleura peruviana,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,0.18,7
+6,chiton  cummingsi,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,8.23,7
+7,chiton  granosus,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,1,M,2.3,7
+8,chiton  latus,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,0.06,7
+9,lottia  orbignyi,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,,M,0.02,9
+10,concholepas concholepas,Mollusca,Gastropoda,Predator,Predator,Gastropoda,1,M,2.3,1
+11,enoplochiton  niger,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,6,7
+12,fissurella  costata,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,49.03,7
+13,fissurella  crassa,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,15.2,7
+14,fissurella  cummingi,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,18,14
+15,fissurella  limbata,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,16.45,7
+16,fissurella  maxima,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,11,14
+17,fissurella  picta,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,15,14
+18,fissurella  puhlcra,Mollusca,Gastropoda,Omnivore,Omnivore,Fissurellidos,1,M,15,14
+19,heliaster helianthus,Echinodermata,Asteroidea,Predator,Predator,Sea star,,M,173.46,1
+20,scurria  araucana,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,0.02,9
+21,scurria  ceciliana,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,0.045,9
+22,scurria  plana,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,0.03,9
+23,scurria scurra,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,1,M,1.27,9
+24,scurria variabilis,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,0.3,9
+25,scurria viridula,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,1.84,9
+26,scurria zebrina,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,2.97,14
+27,siphonaria lesoni,Mollusca,Gastropoda,Herbivore,Herbivore,Herbivores,,M,0.018,14
+28,stichaster striatus,Echinodermata,Asteroidea,Omnivore,Omnivore,Sea star,,M,8.7,1
+29,tegula atra,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,1,M,1,9
+30,Tonicia lineolata,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,6.14,14
+31,tonicia  chilensis,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,6.14,14
+32,tonicia  elegans,Mollusca,Polyplacophora,Omnivore,Omnivore,Chitons,,M,6.14,14
+33,adenocystis utricularis,Algae,Phaeophyta,Corticated,Basal,Primary Producer,,S,4,12
+34,ahnfeltiopsis spp.,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,5.65,12
+35,anthotoe spp.,Cnidaria,Anthozoa,Scavenger,Scavenger,Scavenger,,S,10,2
+36,austromegabalanus psittacus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,Barnacle,1,S,0.95,13
+37,balanus laevis,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,Barnacle,,S,0.05,6
+38,benthic_diatoms,Algae,Bacillariophacea,Ephemeral,Basal,Primary Producer,,S,0.002,3
+39,brachidontes granulata,Mollusca,Bivalvia,FilterFeeder,FilterFeeder,Bivalve,,S,0.08,4
+40,bryopsis_spp,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,0.25,11
+41,bunodactis spp.,Cnidaria,Anthozoa,Scavenger,Scavenger,Scavenger,,S,12,2
+42,centroceras spp.,Algae,Rhodophyta,Ephemeral,Basal,Primary Producer,,S,1.87,11
+43,ceramium spp.,Algae,Rhodophyta,Ephemeral,Basal,Primary Producer,,S,1.26,11
+44,chaetomorpha_spp,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,5.88,11
+45,chondrus  canaliculatus,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,0.68,12
+46,cladophora spp.,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,3.5,11
+47,codium dimorpha,Algae,Chaetophyta,Corticated,Basal,Primary Producer,,S,0.65,12
+48,colpomenia phaeodactyla,Algae,Phaeophyta,Corticated,Basal,Primary Producer,,S,0.5,12
+49,colpomenia sinuosa,Algae,Phaeophyta,Corticated,Basal,Primary Producer,,S,0.5,12
+50,corallina offcinalis var. chilensis,Algae,Rhodophyta,Articulated,Basal,Primary Producer,,S,1.37,13
+51,durvillaea antarctica,Algae,Phaeophyta,Kelp,Basal,Primary Producer,1,S,10,12
+52,ectocarpus silicosus,Algae,Phaeophyta,Ephemeral,Basal,Primary Producer,,S,1,11
+53,enteromorpha compressa,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,0.41,11
+54,gelidium rex,Algae,Rhodophyta,Corticated,Basal,Primary Producer,1,S,3.92,12
+55,gelidium spp.,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,3,6
+56,glossophora kunthii,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,7.88,12
+57,grateloupia ,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,10.31,12
+58,gymnogongrus furcellatus,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,5.2,12
+59,halopteris funicularis,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,1.5,11
+60,hildenbrandia lecanelieri,Algae,Rhodophyta,Crustose,Basal,Primary Producer,,S,0.07,11
+61,Oulactis concinnata,Cnidaria,Anthozoa,Scavenger,Scavenger,Scavenger,,S,11,8
+62,jhelius cirratus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,Barnacle,,S,0.05,10
+63,laurencia chilensis,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,3.01,12
+64,lessonia nigrescens,Algae,Phaeophyta,Kelp,Basal,Primary Producer,1,S,15,6
+65,lithothamnion spp.,Algae,Rhodophyta,Crustose,Basal,Primary Producer,,S,0.04,6
+66,mazzaella laminarioides,Algae,Rhodophyta,Corticated,Basal,Primary Producer,1,S,3.86,10
+67,montemaria horridula,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,0.14,12
+68,nothobalanus flosculus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,S,0.05,6
+69,nothochthamalus scabrosus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,S,0.05,10
+70,nothogenia ,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,2.24,12
+71,parantheopsis ,Cnidaria,Anthozoa,Scavenger,Scavenger,Scavenger,,S,10,2
+72,perumytilus purpuratus,Mollusca,Bivalvia,FilterFeeder,FilterFeeder,Bivalve,,S,2.52,5
+73,petalonia fascia,Algae,Phaeophyta,Corticated,Basal,Primary Producer,,S,2,12
+74,petroglossum spp.,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,5,12
+75,peysonella spp.,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,0.05,10
+76,phragmatopoma spp.,Annelida,Polychaeta,FilterFeeder,FilterFeeder,FilterFeeder,,S,2.5,13
+77,phymactis spp.,Cnidaria,Anthozoa,Scavenger,Scavenger,Scavenger,,S,11.91,2
+78,plocamium cartilageneum,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,5,12
+79,polysiphonia_spp,Algae,Rhodophyta,Ephemeral,Basal,Primary Producer,,S,0.88,11
+80,pyropia spp,Algae,Rhodophyta,Ephemeral,Basal,Primary Producer,1,S,1.21,10
+81,prionitis spp,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,2.8,12
+82,pyura chilensis,Chordata,Ascidiacea,FilterFeeder,FilterFeeder,FilterFeeder,1,S,2.91,13
+83,ralfsia californica,Algae,Phaeophyta,Crustose,Basal,Primary Producer,,S,0.05,12
+84,Rhizoclonium ambiguum ,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,1.3,11
+85,Gastroclonium cyclindricum,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,2,11
+86,rhodymenia sp,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,2.47,12
+87,sarcothalia ,Algae,Rhodophyta,Corticated,Basal,Primary Producer,1,S,2.5,11
+88,schottera nicaensis,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,2.53,12
+89,schyzimenia doryophora,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,3,12
+90,scythosiphon lomentaria,Algae,Rhodophyta,Ephemeral,Basal,Primary Producer,,S,1.5,11
+91,semimytilus algosus,Mollusca,Bivalvia,FilterFeeder,FilterFeeder,FilterFeeder,,S,0.04,5
+92,trematocarpus ,Algae,Rhodophyta,Corticated,Basal,Primary Producer,,S,3.33,12
+93,ulva rigida,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,1,S,2.33,11
+94,ulvella spp.,Algae,Chaetophyta,Ephemeral,Basal,Primary Producer,,S,0.002,11
+95,plankton,Plankton,Plankton,Plankton,Basal,Primary Producer,, ,1.00E-05,4
+96,gulls,Chordata,Aves,Predators,Predator,Birds,,M,500,1
+97,cinclodes nigrofumosus,Chordata,Aves,Predators,Predator,Birds,,M,280,1
+98,Echinolittorina peruviana,Mollusca,Gastropoda,Herbivore,Herbivore,Herbivores,,M,0.0129,4
+99,austrolittorina araucana,Mollusca,Gastropoda,Herbivore,Herbivore,Herbivores,,M,0.0068,4
+100,onchidella sp. ,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,0.0077,4
+101,Allelopetrolisthes punctatus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,M,2,4
+102,petrolisthes spinifrons,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,M,2,4
+103,petrolisthes angulosus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,M,2,4
+104,petrolisthes tuberculatus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,M,2,4
+105,petrolisthes tuberculosus,Arthropoda,Crustacae,FilterFeeder,FilterFeeder,FilterFeeder,,M,2,4
+106,trimusculus peruvianus,Mollusca,Gastropoda,Omnivore,Omnivore,Scurrias,,M,1,4
+107,Humans,Chordata,Mammalia,Top,Top,Other,,,,

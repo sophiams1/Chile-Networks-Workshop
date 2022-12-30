@@ -12,13 +12,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Session: Afternoon, Day 2 from 3:30 - 6:30 PM
 
-By: Sophia Simon, Daniel Valencia, Kayla Hale, Isidora Ávila-Thiem
+By: Sophia Simon, Daniel Valencia, Kayla Hale, Isidora Ávila-Thieme
 
 Oceans are facing a crisis worldwide, with fish stocks and marine ecosystems collapsing due to anthropogenic stressors including fisheries exploitation and climate change. The field of ecological networks can contribute to understanding how the perturbations caused by those stressors propagate through marine ecosystems by analyzing the structure and dynamics of networks of species interactions.
 
 This aim of this lab is to introduce a code base for analyzing the effects of perturbation from environmental or anthropogenic stressors, that may result in the extinction of marine organisms. Specific focus is placed on how these extinctions may propagate through a food web and impact static network metrics. We extend this analysis to dynamic network metrics in the lab's final reflection, where we also recommend additional resources.
 
-{Introduction/power-point 30 minutes}
+{Introductions/power-point 30 minutes}
 
 ### Section 1 - Introduction to networks approach & basic concepts
 
@@ -33,9 +33,10 @@ library("NetworkExtinction")
 library("ggplot2")
 library("network")
 library("igraph")
+libarary("fluxweb")
 
-#define simple example network
-example_matrix <- read.csv("/Users/sophiasimon/Desktop/exnet.csv",header = FALSE)
+#load simple example network
+example_matrix <- read.csv("/Users/sophiasimon/Documents/Chile-Networks-Workshop/exnet.csv",header = FALSE)
 example_matrix <- as.matrix(example_matrix)
 
 #load chilean intertidal network
@@ -50,11 +51,11 @@ intertidal_network <- as.network(chilean_intertidal)
 
 #### Calculating and visualizing important network metrics (\~45 minutes)
 
-Below are important definitions relevant to the NetworkExtinction R package workflows (NextR package preprint, Valdovinos 2019 Box 1). Read through these definitions and complete the exercises and reflections that follow each definition. NOTE: For each exercise, begin by manipulating the simple example network called `example_matrix` before moving on to the empirical network called `intertidal_matrix`. Remember that the example matrix is the same one shown in the presentation slides. For these exercises, it may help to draw out the example matrix and preform manipulations by hand on pen & paper.
+Below are important definitions relevant to the NetworkExtinction R package workflows (NextR package preprint Box 1, Valdovinos 2019 Box 1). Read through these definitions and complete the exercises and reflections that follow each definition. NOTE: For each exercise, begin by manipulating the simple example network called `example_matrix`. Make sure you understand the code before moving on to the empirical network called `intertidal_matrix`. Remember that the example matrix is the same one shown in the presentation slides. For these exercises, it may help to draw out the example matrix and preform manipulations by hand on pen & paper.
 
 **Interaction Type** - a link between two nodes reflecting the type of relationship involved. The NetworkExtinction R package handles mutualistic (+/+) and trophic / parasitic (-/+) interaction types. For a more exhaustive overview of interaction types, consult Morales-Castilla et al. (2015).
 
-Reflection 1.1. Interaction type greatly impacts how links between nodes are interpreted biologically and subsequently impact the consequences of loss of connections in extinction cascades. Brainstorm how the loss of links/isolation of nodes relates to extinction in trophic versus mutualistic networks. How might outcomes differ between basal species/consumer nodes and facultative/obligate links?
+Reflection 1.1. Interaction type greatly impacts how links between nodes are interpreted biologically and subsequently impact the consequences of loss of connections in extinction cascades. Brainstorm how the loss of links/isolation of nodes relates to extinction in trophic versus mutualistic networks. What links need to be lost for a consumer species to go extinct in a food web? What about a resource species? When thinking about mutualistic networks, answer this same question for facultative and obligate species.
 
 **Species Richness (S)** -- Total number of species in the network.
 
@@ -109,7 +110,7 @@ C <- L/S^2
 
 In the NExt R package, the `DegreeDistribution()` function calculates the cumulative distribution of the number of links that each species in the food network has (Estrada 2007). Then, the observed distribution is fitted to the exponential, and power law models.
 
-```{r Calculating important metrics}
+```{r Exercise 1.4}
 
 DegreeDistribution(example_matrix,scale="arithmetic")
 
@@ -123,7 +124,7 @@ Reflection 1.3. Degree distribution captures information about the probability o
 
 #### Simulating network extinctions (\~20 minutes)
 
-For this lab, we are going to focus on one extinction scenario - extinction of most-connected nodes. Resultant network metrics, after extinction of most-connected nodes are assigned to the `Output` variable which contains columns Spp (num. identity of the extinct species), S (number of species), L (number of links), C (network connectance), Link_density (L/S), SecExt (number of secondary extinctions), NumExt (number of primary extinctions that have occurred), TotalExt (cumulative total number of extinction that have occurred, including primary and secondary extinctions).
+For this lab, we are going to focus on one extinction scenario - extinction of most-connected nodes. Resultant network metrics, after extinction of most-connected nodes are assigned to the `Output` variable which contains columns Spp (number identity of the extinct species), S (number of species), L (number of links), C (network connectance), Link_density (L/S), SecExt (number of secondary extinctions), NumExt (number of primary extinctions that have occurred), TotalExt (cumulative total number of extinction that have occurred, including primary and secondary extinctions).
 
 ```{r}
 
@@ -136,32 +137,75 @@ Rewiring = FALSE # default argument
 Output <- Mostconnected$sims
 #indexing the Output variable for most relevant network metrics. If you are curious, you will have time to explore additional metrics during independent work.
 Output[c("Spp","S","L","C","Link_density","SecExt","NumExt","TotalExt")]
-ExtinctionPlot(Mostconnected$sims)
+
 ```
 
-Reflection 2.x. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust?
+Use the code below to create plots of the output data frame and investigate the effects of primary extinction on the network. The NextR package provides a function called `ExtinctionPlot` which plots primary extinctions vs secondary extinctions. In addition to that, you may make your own plots from the `Output` dataframe.
 
-Reflection 2.x. Depending on your answer to the previous reflection, brainstorm some ecological mechanisms that might underlie the observed result. What species traits or network properties might explain the network's vulnerability or robustness to extinction?
+```{r}
+#Plot Primary vs Secondary extinctions
+ExtinctionPlot(Mostconnected$sims)
+
+#EXAMPLE plot for additional analysis. The example plot below shows x=NumExt (primary extinctions) versus y=C (network connectance). Use this code as a starting point to continue investigating the various metrics in the Output dataframe. 
+
+df=Mostconnected$sims
+ggplot(df, aes(x=NumExt, y=C)) +
+  geom_line()
+```
+
+Reflection 2.1. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to the extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust?
 
 #### Testing hypotheses for network robustness (\~25 minutes)
 
-To further develop your ideas from Reflection 2.x, use the code below to assess different properties of the Chilean intertidal network that might underlie or explain the observed response to primary extinction.
+Reflection 2.2. Depending on your answer to the Reflection 2.1, brainstorm some ecological mechanisms that might underlie the observed result. What species traits or network properties might explain the network's vulnerability or robustness to extinction? Use the code below to assess different properties of the Chilean intertidal network that might underlie or explain the observed response to primary extinction. Remember that you can also re-use code for calculating network metrics from Section 1 - "Introduction to networks approach & basic concepts".
 
 ```{r}
 
-#generalism
+#load species traits 
+species_char <- read.csv("/Users/sophiasimon/Documents/Chile-Networks-Workshop/SpeciesCharacteristics.csv",header = TRUE)
 
-#redundancy
+#Calculate mean generality of consumer species (e.g. mean number of resource species per consumer).
+gen <- sum(colSums(intertidal_matrix))/sum((colSums(intertidal_matrix)!=0))
+#standard deviation of mean generality
+sd_gen <- sd(colSums(intertidal_matrix) / (sum(intertidal_matrix)/dim(intertidal_matrix)[1]) )
 
-#trophic levels
+#Calculate mean vulnerability of resource species (e.g. mean numberof consumer species per resource)
+vul <- sum(rowSums(intertidal_matrix))/sum((rowSums(intertidal_matrix)!=0))
+#standard deviation of mean vulnerability
+sd_vul <- sd(rowSums(intertidal_matrix) / (sum(intertidal_matrix)/dim(intertidal_matrix)[1]) )
 
-#omnivory --> non-integer trophic level
+#Calculate trophic levels
+TL_summary <- table(species_char$TL)
 
-#number of herbivores, omnivores, etc
+#Calculate traits
+Trait_summary <- table(species_char$Traits)
 
-#species traits / Isidora's characteristics sheet (plotting in ggplot)
+#Traits from Kefi et al. (2016). A summary of which functional group each cluster corresponds to can be found in the README file.
+Cluster_summary <- table(species_char$Cluster)
 
-#Hypothesis testing --> remove the species that you believe are responsible for network robustness from the network. Then, re-run the code simulating network extinctions. Do you observe a decrease in robustness? 
+```
+
+To further develop your ideas from Reflection 2.x. and 2.x, use the code below to assess different properties of the Chilean intertidal network that might underlie or explain the observed response to primary extinction. Code is provided below for hypothesis testing that involves removing the species that you believe are responsible for network robustness and then re-running the code simulating network extinctions and analyzing network metrics.
+
+```{r}
+
+#Hypothesis testing: remove the species that you believe are responsible for network robustness from the network. Then, re-run the code simulating network extinctions. Do you observe a decrease in robustness? 
+
+#as an example, we have removed all species that are scavengers from the network
+scavenger_ids = species_char$Matrix.code[species_char$TL=="Scavenger"]
+new_chilean_intertidal <- delete.vertices(chilean_intertidal,)
+  
+Mostconnected <- SimulateExtinctions(Network = new_chilean_intertidal, Method = "Mostconnected",
+NetworkType = "Trophic", # default argument
+IS = 0, # default argument
+Rewiring = FALSE # default argument
+)
+
+#Hypothesis testing (2)
+#create a new data frame adding species characteristics to the extinction output
+#extract_char <- species_char[Output$Spp,]
+#new_chilean_intertidal <- merge(Output,extract_char)
+
 ```
 
 Looking at the figure, we're removing most to least connected species. Even with that, the network is very robust. Good reflection b/c you can integrate ecological concepts. In the intertidal, it's because there's a lot of omnivory with highly generalist and redundant interactions. This is one reason why this network is so robust. In the Scientific Reports paper, there is a section where they discuss why the network is so robust.
