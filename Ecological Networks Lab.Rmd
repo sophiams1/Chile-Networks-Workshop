@@ -217,31 +217,15 @@ Rewiring = FALSE # default argument
 Mostconnected_hypothesis$sims
 
 
-
-#Hypothesis testing (2)
-#create a new data frame adding species characteristics to the extinction output
-#extract_char <- species_char[Output$Spp,]
-#new_chilean_intertidal <- merge(Output,extract_char)
-
 ```
-
-Looking at the figure, we're removing most to least connected species. Even with that, the network is very robust. Good reflection b/c you can integrate ecological concepts. In the intertidal, it's because there's a lot of omnivory with highly generalist and redundant interactions. This is one reason why this network is so robust. In the Scientific Reports paper, there is a section where they discuss why the network is so robust.
-
-(Kayla) Prompt students to think about what would make a network robust. Pose hypotheses, run the code, think through what they find. (Daniel) Also useful to have more visual aid if they want to make some conclusions regarding robustness. They should also look at the network and trophic level. If robustness is related to the amount of herbivores there are, you should look at the herbivores. Maybe make a summary of the matrix that allows to show amount of herbivores, omnivores, etc. Can use Isidora's characteristics sheet for this. Add a line of code in which we show how to plot in ggplot (plot different columns, beyond secondary extinctions using ggplot).
-
-(Kayla) relative generalism of species will me helpful in drawing the conclusions that Isidora came to for Reflection 2.x. relate to degree. could be as simple as saying omnivore is any species that has a non-integer trophic level. plotting trophic level vs degree.
-
-Guiding questions/instructions for them to explore some metric. Ordered extinctions could be for hypothesis testing.
-
-Hypothesis: robustness comes from omnivores so remove omnivores and see what happens?
-
-All specialists depend on plankton. Very sensitive to removal of plankton. These could be two hypotheses/exercises.
 
 Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species or random extinctions.
 
 #### Visualization and comparison
 
 ```{r}
+
+#you may use this code to compare your original and hypothesis networks
 
 ExtinctionPlot(Mostconnected$sims)
 
@@ -252,15 +236,9 @@ CompareExtinctions(Nullmodel = Random_MC, Hypothesis = Mostconnected)
 CompareExtinctions(Nullmodel = Random_OR, Hypothesis = Ordered)
 ```
 
-### Part 3. Independent work (\~30 minutes)
+### Part 3. (OPTIONAL) More extinction types 
 
--   Goal: developing tools for conservation. how can this be useful for conservation, strategy, etc? careful when making predictions. Use Friday afternoon to have a second lab session/open office hour.
-
--   Independent work: reading papers, continuing with activities part 2.2 and 2.3, developing a small project centering tools for conservation.
-
--   Sergio book chapter. Use ecological networks for ecosystem management. Isidora also a collaborator on this work.
-
-#### (OPTIONAL) Ordered extinctions
+#### Ordered extinctions
 
 ```{r}
 Order <- order(sna::degree(chilean_intertidal, cmode = "outdegree"),
@@ -298,16 +276,6 @@ ExtinctionPlot(Random$sims)
 
 Note: If you would like to run the code chunk above at higher `nsim` values, you may want to consider running the code in parallel. To do this, you may uncomment the second line and make sure you input the right number of cores for your specific computer.
 
-#### (OPTIONAL) Introducing extinction thresholds
-
-By default, the functions in *NetworkExtinction* assume that, for a secondary extinction to happen, a node needs to lose all connections to its prey. However, one may also want to assume that species are only capable of sustaining existence given a threshold of remaining interaction strengths.
-
-#### (OPTIONAL) Introducing rewiring potential
-
-Ecological networks aren't static and we should assume that species may shift their connections in response to extinctions of an association/interaction partner. Rewiring processes can be simulated with *NetworkExtinction* using the `RewiringDist` argument.
-
-Below, we call a matrix that contains information about similarities or rewiring potential of species indexed by columns to those indexed by rows.
-
 ```{r}
 
 ## use the functional group column from species characteristics spreadsheet to inform rewiring? 
@@ -337,10 +305,12 @@ Reflection 4.4
 
 Curtsdotter (2011) Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs
 
-#### Reflection 4.3 -- Network methods as a tool for conservation (10 minutes - think, pair, share)
+#### Network methods as a tool for conservation (10 minutes - think, pair, share)
 
-Reflection 4.5.
+Understand how impacts propagate.
 
-Reflection 4.6.
+Reflection 4.5. Choose a specific management scenario or intervention (could be related to your research, but it doesn't have to be). Brainstorm how considering networks and multi-species interactions could change your approach to or perspective on the scenario. Be prepared to share a specific example with the group, if we have time.
 
-Sergio, Isidora book chapter.
+Reflection 4.6. In addition to applications in management, network analysis could also be a useful tool for monitoring. Specifically, species that are connected through interactions could be applied to developing "signals" to assess the
+
+For more resources on the question of applying network methods to management, look at references uploaded to in the github folder.
