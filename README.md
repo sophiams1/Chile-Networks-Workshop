@@ -2,8 +2,7 @@
 
 Cluster key from Kefi et al. (2016)
 
-14 multiplex clusters were identified which differ from each other in the types of links they are involved
-in, the pattern of incoming and outgoing links, and the identity of species they interacted with. When the identity of the species interacted with was ignored, the 14 clusters were grouped into 5 "groups of clusters" which are called multiplex functional groups. Those multiplex functional groups can broadly be characterized as...
+14 multiplex clusters were identified which differ from each other in the types of links they are involved in, the pattern of incoming and outgoing links, and the identity of species they interacted with. When the identity of the species interacted with was ignored, the 14 clusters were grouped into 5 "groups of clusters" which are called multiplex functional groups. Those multiplex functional groups can broadly be characterized as...
 
 (1) A group of mobile consumers (clusters 1, 4, 7, 9, 14), mostly carnivores, composed of crabs, sea snails, chitons, starfishes, and birds, most of which consume prey species and often find themselves in competition with others.
 

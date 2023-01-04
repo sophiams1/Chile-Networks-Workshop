@@ -33,7 +33,6 @@ library("NetworkExtinction")
 library("ggplot2")
 library("network")
 library("igraph")
-libarary("fluxweb")
 
 #load simple example network
 example_matrix <- read.csv("/Users/sophiasimon/Documents/Chile-Networks-Workshop/exnet.csv",header = FALSE)
@@ -149,7 +148,7 @@ ExtinctionPlot(Mostconnected$sims)
 #EXAMPLE plot for additional analysis. The example plot below shows x=NumExt (primary extinctions) versus y=C (network connectance). Use this code as a starting point to continue investigating the various metrics in the Output dataframe. 
 
 df=Mostconnected$sims
-ggplot(df, aes(x=NumExt, y=C)) +
+ggplot(df, aes(x=NumExt, y=L)) +
   geom_line()
 ```
 
@@ -191,15 +190,33 @@ To further develop your ideas from Reflection 2.x. and 2.x, use the code below t
 
 #Hypothesis testing: remove the species that you believe are responsible for network robustness from the network. Then, re-run the code simulating network extinctions. Do you observe a decrease in robustness? 
 
-#as an example, we have removed all species that are scavengers from the network
+#as an example, what if we wanted to test robustness after removing all species that are scavengers from the network.
 scavenger_ids = species_char$Matrix.code[species_char$TL=="Scavenger"]
-new_chilean_intertidal <- delete.vertices(chilean_intertidal,)
+#If you do not want to remove all of the scavengers, you may use the code below to randomly index a subset of the id vector
+n=0.5 #index 50% of species
+half_scavenger_ids <- sample(scavenger_ids,ceiling(n*length(scavenger_ids)),replace=FALSE)
+
+#To simulate extinction of specific nodes, you can use the SimulateExtinctions function again. This time, use Method=Ordered to delete specific nodes. 
+Ordered <- SimulateExtinctions(Network = chilean_intertidal, 
+                                     Method = Ordered, 
+                                     Order = c(scavenger_ids),
+                                     NetworkType = "Trophic", 
+                                     IS = 0,
+                                     Rewiring = FALSE
+                                      )
+#The resultant network (with scavengers removed) can then be indexed. If you look at the network object, you can see that the number of species has been reduced from 106 to 102. In other words, there were 4 scavenger species.
+hypothesis_network = Ordered$Network
   
-Mostconnected <- SimulateExtinctions(Network = new_chilean_intertidal, Method = "Mostconnected",
+#Now you may rerun SimulateExtinctions Method="Mostconnected" with the hypothesis_network to see if robustness is changed
+Mostconnected_hypothesis <- SimulateExtinctions(Network = hypothesis_network, Method = "Mostconnected",
 NetworkType = "Trophic", # default argument
 IS = 0, # default argument
 Rewiring = FALSE # default argument
 )
+
+Mostconnected_hypothesis$sims
+
+
 
 #Hypothesis testing (2)
 #create a new data frame adding species characteristics to the extinction output
