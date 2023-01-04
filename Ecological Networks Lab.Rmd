@@ -34,8 +34,8 @@ library("ggplot2")
 library("network")
 library("igraph")
 
-#load simple example network
-example_matrix <- read.csv("/Users/sophiasimon/Documents/Chile-Networks-Workshop/exnet.csv",header = FALSE)
+#load simple example network. NOTE that you will need to 
+example_matrix <- read.csv("~/exnet.csv",header = FALSE)
 example_matrix <- as.matrix(example_matrix)
 
 #load chilean intertidal network
@@ -45,7 +45,7 @@ data("chilean_intertidal")
 intertidal_matrix <- as.matrix(chilean_intertidal)
 intertidal_network <- as.network(chilean_intertidal)
 
-#Code to visualize networks (Daniel can try to do this)
+#Code to visualize networks -- Daniel wrote some wonderful code for visualizing networks which is located in the github folder. The R script is called "network_plotting.R" 
 ```
 
 #### Calculating and visualizing important network metrics (\~45 minutes)
@@ -276,11 +276,6 @@ ExtinctionPlot(Random$sims)
 
 Note: If you would like to run the code chunk above at higher `nsim` values, you may want to consider running the code in parallel. To do this, you may uncomment the second line and make sure you input the right number of cores for your specific computer.
 
-```{r}
-
-## use the functional group column from species characteristics spreadsheet to inform rewiring? 
-```
-
 ### Part 4. Synthesis & Reflection (\~30 minutes)
 
 #### Connecting oceanography and ecology (10 minutes - think, pair, share)
@@ -306,8 +301,6 @@ Reflection 4.4
 Curtsdotter (2011) Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs
 
 #### Network methods as a tool for conservation (10 minutes - think, pair, share)
-
-Understand how impacts propagate.
 
 Reflection 4.5. Choose a specific management scenario or intervention (could be related to your research, but it doesn't have to be). Brainstorm how considering networks and multi-species interactions could change your approach to or perspective on the scenario. Be prepared to share a specific example with the group, if we have time.
 
