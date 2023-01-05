@@ -236,7 +236,7 @@ CompareExtinctions(Nullmodel = Random_MC, Hypothesis = Mostconnected)
 CompareExtinctions(Nullmodel = Random_OR, Hypothesis = Ordered)
 ```
 
-### Part 3. (OPTIONAL) More extinction types 
+### Part 3. (OPTIONAL) More extinction types
 
 #### Ordered extinctions
 
