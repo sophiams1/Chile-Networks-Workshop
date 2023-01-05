@@ -161,7 +161,7 @@ Reflection 2.2. Depending on your answer to the Reflection 2.1, brainstorm some 
 ```{r}
 
 #load species traits 
-species_char <- read.csv("/Users/sophiasimon/Documents/Chile-Networks-Workshop/SpeciesCharacteristics.csv",header = TRUE)
+species_char <- read.csv("~/SpeciesCharacteristics.csv",header = TRUE)
 
 #Calculate mean generality of consumer species (e.g. mean number of resource species per consumer).
 gen <- sum(colSums(intertidal_matrix))/sum((colSums(intertidal_matrix)!=0))
@@ -216,7 +216,6 @@ Rewiring = FALSE # default argument
 
 Mostconnected_hypothesis$sims
 
-
 ```
 
 Reflection 2.1. Brainstorm examples of biological mechanisms that would lead to the 3 extinction scenarios considered in this package: extinction of most-connected species or random extinctions.
@@ -236,7 +235,9 @@ CompareExtinctions(Nullmodel = Random_MC, Hypothesis = Mostconnected)
 CompareExtinctions(Nullmodel = Random_OR, Hypothesis = Ordered)
 ```
 
-### Part 3. (OPTIONAL) More extinction types
+### Part 3. (OPTIONAL) Exploring more extinction types
+
+If you finish with Part 2 before everyone else, you may experiment with repeating the analysis investigating the 2 other extinction types: ordered extinctions and random extinctions.
 
 #### Ordered extinctions
 
