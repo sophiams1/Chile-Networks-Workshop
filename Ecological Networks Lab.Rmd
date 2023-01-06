@@ -152,7 +152,7 @@ ggplot(df, aes(x=NumExt, y=L)) +
   geom_line()
 ```
 
-Reflection 2.1. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to the extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust?
+Reflection 2.1. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to the extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust? (Note: hints to answering this question can be found in the discussion of Ávila-Thieme 2020)
 
 #### Testing hypotheses for network robustness (\~25 minutes)
 
