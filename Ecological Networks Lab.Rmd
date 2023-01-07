@@ -153,11 +153,11 @@ ggplot(df, aes(x=NumExt, y=L)) +
   geom_line()
 ```
 
-Reflection 2.1. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to the extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust? (Note: hints to answering this question can be found in the discussion of Ávila-Thieme 2020)
+Reflection 2.1. Reflecting on the `ExtinctionPlot` , what do you notice about the effect of cumulative primary extinctions on the overall network? Does anything surprise you about the network's response to the extinction of its most-connected species? More specifically, does the network appear to be highly vulnerable to extinction or does it appear to be robust?
 
 #### Testing hypotheses for network robustness (\~25 minutes)
 
-Reflection 2.2. Depending on your answer to the Reflection 2.1, brainstorm some ecological mechanisms that might underlie the observed result. What species traits or network properties might explain the network's vulnerability or robustness to extinction? Use the code below to assess different properties of the Chilean intertidal network that might underlie or explain the observed response to primary extinction. Remember that you can also re-use code for calculating network metrics from Section 1 - "Introduction to networks approach & basic concepts".
+Reflection 2.2. Depending on your answer to the Reflection 2.1, brainstorm some ecological mechanisms that might underlie the observed result. What species traits or network properties might explain the network's vulnerability or robustness to extinction? Use the code below to assess different properties of the Chilean intertidal network that might underlie or explain the observed response to primary extinction. Remember that you can also re-use code for calculating network metrics from Section 1 - "Introduction to networks approach & basic concepts". (Note: hints to answering this question can be found in the discussion of Ávila-Thieme 2020)
 
 ```{r}
 
@@ -201,7 +201,7 @@ half_scavenger_ids <- sample(scavenger_ids,ceiling(n*length(scavenger_ids)),repl
 #To simulate extinction of specific nodes, you can use the SimulateExtinctions function again. This time, use Method=Ordered to delete specific nodes. 
 Ordered <- SimulateExtinctions(Network = chilean_intertidal, 
                                      Method = Ordered, 
-                                     Order = c(scavenger_ids),
+                                     Order = c(35,41,61,71,77),
                                      NetworkType = "Trophic", 
                                      IS = 0,
                                      Rewiring = FALSE
@@ -289,24 +289,14 @@ One example of an the oceanographic phenomenon that occurs on the coast of Chile
 
 Reflection 4.1. Take a moment to hypothesize about the effects of upwelling on ecological variables. Which ecological variables would you expect to be impacted the most, and how might that change propagate through the ecological network?
 
-(could be very well connected with the exercise, if you remove the plankton node there is a lot of extinction when you remove plankton and in the paper you see plankton perturbation associated with climate change and changes in the level of nutrients due to changes in upwelling. Very good connection! Careful talking about near-shore vs off-shore plankton dynamics, because they are different. )
-
 Reflection 4.2. Brainstorm other examples of oceanographic phenomena that may impact ecological variables and how. How do you hypothesize that climate change may alter this oceanographic phenomenon and how might that change propagate through the ecological network?
 
 #### Static vs dynamic networks (10 minutes - think, pair, share)
 
-Static network metrics represent a subset of the tools available in network analysis -- and the next step involves incorporating ecological dynamics.
-
-Reflection 4.3.
-
-Reflection 4.4
-
-Curtsdotter (2011) Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs
+Static network metrics represent a subset of the tools available in network analysis -- and the next step involves incorporating ecological dynamics. See the paper Curtsdotter et al (2011) "Robustness to secondary extinctions: Comparing trait-based sequential deletions in static and dynamic food webs" for a summary of how analysis of secondary extinctions changes after the introduction of considering network dynamics. To read more about the ATN model, a good starting point is Brose et al (2006) "Allometric scaling enhances stability in complex food webs" which explains the basics of deriving allometrically scaled parameters from body size.
 
 #### Network methods as a tool for conservation (10 minutes - think, pair, share)
 
 Reflection 4.5. Choose a specific management scenario or intervention (could be related to your research, but it doesn't have to be). Brainstorm how considering networks and multi-species interactions could change your approach to or perspective on the scenario. Be prepared to share a specific example with the group, if we have time.
 
 Reflection 4.6. In addition to applications in management, network analysis could also be a useful tool for monitoring. Specifically, species that are connected through interactions could be applied to developing "signals" to assess the
-
-For more resources on the question of applying network methods to management, look at references uploaded to in the github folder.

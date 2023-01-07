@@ -1,5 +1,19 @@
 # Chile-Networks-Workshop
 
+Ecological Networks Lab.Rmd is the main code containing the worksheet for the practical lab.
+
+Within this worksheet, you will need to load the data from several spreadsheets which include: "SpeciesCharacteristics.csv" (containing species characteristics for all 107 species in the Chilean web) and "exnet.csv" (containing a 15x15 example network to manipulate when learning about network properties). The Chilean network itself is already contained within the NextR package and can be loaded by running the line: data("chilean_intertidal").
+
+The script, "network_plotting.R" was written by Daniel Valencia and is a wonderful way to visualize your network from a matrix. You can also integrate species characteristics data to color nodes based on trophic level, etc.
+
+"Intro networks.pptx" is a powerpoint presentation to introduce students to basic structural network properties and an exercise on how to convert between graphical and matrix forms of a network.
+
+"NextR package SM.pdf" is a pdf of supplemental documentation for the NextR package. More information can also be found online or in the methods paper that introduces the NextR package. Since it is a published R package, there is lots of existing information on how it can be used.
+
+The zip file "Supplemental labs (Matlab).zip" contains a completely new set of labs written by Kayla Hale. They are not associated with the Ecological Networks Lab in R and can be explored in students' own time. They are a group of 3 labs written in Matlab introducing students to more ideas involving small toy networks and also network dynamics.
+
+------------------------------
+
 Cluster key from Kefi et al. (2016)
 
 14 multiplex clusters were identified which differ from each other in the types of links they are involved in, the pattern of incoming and outgoing links, and the identity of species they interacted with. When the identity of the species interacted with was ignored, the 14 clusters were grouped into 5 "groups of clusters" which are called multiplex functional groups. Those multiplex functional groups can broadly be characterized as...
